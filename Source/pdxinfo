@@ -1,0 +1,8 @@
+name=Whymog's Tutorial Game
+author=Whymog
+description=Hey man, I'm just trying to get this thing to run
+bundleID=com.whymog.whymogsTutorialGame
+version=0.0.1
+buildNumber=0001
+imagePath=Images/
+launchSoundPath=path/to/launch/sound/file
