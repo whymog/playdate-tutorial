@@ -27,6 +27,7 @@ end
 
 local function initialize()
   math.randomseed(playdate.getSecondsSinceEpoch())
+  playdate.startAccelerometer()
 
   -- Initialize player sprite
 
@@ -65,6 +66,8 @@ end
 initialize()
 
 function playdate.update()
+  local x, y, z = playdate.readAccelerometer()
+
   if playTimer.value == 0 then
     if playdate.buttonJustPressed(playdate.kButtonA) then
       resetTimer()
@@ -72,6 +75,8 @@ function playdate.update()
       score = 0
     end
   else
+    playerSprite:moveBy(x * playerSpeed, y * playerSpeed)
+
     if playdate.buttonIsPressed(playdate.kButtonUp) then
       playerSprite:moveBy(0, -playerSpeed)
     end
@@ -98,4 +103,5 @@ function playdate.update()
 
   gfx.drawText("Time: *" .. math.ceil(playTimer.value/1000) .. "*", 8, 5)
   gfx.drawText("Score: *" .. score .. "*", 320, 5)
+  gfx.drawText("Accelerometer: *" .. x .. "x, " .. y .. "y*", 8, 20)
 end
